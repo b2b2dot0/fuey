@@ -8,21 +8,27 @@
   .passed {
     color: green
   }
+  .executing {
+    color: orange
+  }
 
 
 %nav.top-bar
   %ul.title-area
     %li.name 
       %h1 
-        =link_to "Fuey Client Traces", dashboard_url
-
-%input{"ng-model" => "query"}
+        = link_to "Fuey Client Traces", dashboard_url
+  %ul.left
+    %li
+      %input{"ng-model" => "search.name"}
 
 %div{'ng-controller' => 'TraceListCtrl'}
-  %div.row{'ng-repeat' => 'trace in traces | filter:query | orderBy:orderProp'}
-    %ul.breadcrumbs{'class' => '{{trace.status}}'}
+  %div.row{'ng-repeat' => 'trace in traces | orderBy:orderProp'}
+    %ul.breadcrumbs
       %li
         %strong {{trace.name}}
-      %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}'} 
+      %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.settings}}'} 
         {{step.type}} 
         {{step.name}}
+    %div {{trace.statusMessage}}
+      

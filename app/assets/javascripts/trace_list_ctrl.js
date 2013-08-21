@@ -2,7 +2,6 @@ function TraceListCtrl($scope) {
   $scope.traces_fake = [
     { 
       "name": "CND Trace",
-      "status": "failed",
       "steps": [
         {
           "type": "Ping",
@@ -10,27 +9,6 @@ function TraceListCtrl($scope) {
           "settings": "8.8.8.8",
           "status": "passed",
           "statusMessage": "Ping succeeded." 
-        },
-        {
-          "type": "Ping",
-          "name": "Localhost",
-          "settings": "127.0.0.1",
-          "status": "passed",
-          "statusMessage": "Ping succeeded" 
-        },
-        {
-          "type": "SNMPWalk",
-          "name": "Client VPN",
-          "settings": "1.0.1.1",
-          "status": "failed",
-          "statusMessage": "IP not found in IPTable"
-        },
-        {
-          "type": "RFCPing",
-          "name": "SAP Server",
-          "settings": "89.1.121.20",
-          "status": "pending",
-          "statusMessage": ""
         }
       ]
     },
