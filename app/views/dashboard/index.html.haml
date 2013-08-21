@@ -1,0 +1,28 @@
+:css
+  .pending {
+    color: darkgrey
+  }
+  .failed {
+    color: red
+  }
+  .passed {
+    color: green
+  }
+
+
+%nav.top-bar
+  %ul.title-area
+    %li.name 
+      %h1 
+        =link_to "Fuey Client Traces", dashboard_url
+
+%input{"ng-model" => "query"}
+
+%div{'ng-controller' => 'TraceListCtrl'}
+  %div.row{'ng-repeat' => 'trace in traces | filter:query | orderBy:orderProp'}
+    %ul.breadcrumbs{'class' => '{{trace.status}}'}
+      %li
+        %strong {{trace.name}}
+      %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}'} 
+        {{step.type}} 
+        {{step.name}}
