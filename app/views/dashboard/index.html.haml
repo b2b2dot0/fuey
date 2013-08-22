@@ -18,19 +18,41 @@
     %li.name 
       %h1 
         = link_to "Fuey Client Traces", dashboard_url
-  %ul.left
-    %li
-      %input{"ng-model" => "search.name"}
+
+%form.custom
+  %div.row
+    %div.large-4.columns
+      %input{"ng-model" => "query", :placeholder => "enter text to filter"}
+    
+    %div.large-4.columns
+      %label{:for => 'state-toggle'}
+        %input{:type => "radio", "ng-model" => "state", :name => "state-toggle", :value => ""} 
+        All
+      %label{:for => 'state-toggle'}
+        %input{:type => "radio", "ng-model" => "state", :name => "state-toggle", :value => "passed"}
+        Passed
+      %label{:for => 'state-toggle'}
+        %input{:type => "radio", "ng-model" => "state", :name => "state-toggle", :value => "failed"}
+        Failed
+   
+    %div.large-4.columns
+      %label{:for => 'environment-toggle'}
+        %input{:type => "radio", "ng-model" => "environment", :name => "environment-toggle", :value => ""} 
+        All
+      %label{:for => 'environment-toggle'}
+        %input{:type => "radio", "ng-model" => "environment", :name => "environment-toggle", :value => "prod"}
+        Production
+      %label{:for => 'environment-toggle'}
+        %input{:type => "radio", "ng-model" => "environment", :name => "environment-toggle", :value => "qa"}
+        QA
 
 %div{'ng-controller' => 'TraceListCtrl'}
-  %div.row{'ng-repeat' => 'trace in traces | orderBy:orderProp'}  
+  %div.row{'ng-repeat' => 'trace in traces | traceFilter:query | traceFilter:state | traceFilter:environment  | orderBy:orderProp'}  
     %ul.breadcrumbs
-      %li
+      %li{:class => '{{trace.status}}'}
         %strong {{trace.name}}
       %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.settings}}'} 
         %small {{step.type}} {{step.name}}
       %li.right
         %small {{trace.statusMessage}}
         
-    
-      

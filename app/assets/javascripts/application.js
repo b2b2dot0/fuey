@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require custom.modernizr
+//= require indexOf
+//= require compare_str
+//= require trace_filter
+//= require trace_list_ctrl
+
+angular.module('fuey',['filters']);
