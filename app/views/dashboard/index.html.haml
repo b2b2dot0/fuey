@@ -8,7 +8,7 @@
   .passed {
     color: green
   }
-  .executing {
+  .executed {
     color: orange
   }
 
@@ -23,12 +23,14 @@
       %input{"ng-model" => "search.name"}
 
 %div{'ng-controller' => 'TraceListCtrl'}
-  %div.row{'ng-repeat' => 'trace in traces | orderBy:orderProp'}
+  %div.row{'ng-repeat' => 'trace in traces | orderBy:orderProp'}  
     %ul.breadcrumbs
       %li
         %strong {{trace.name}}
       %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.settings}}'} 
-        {{step.type}} 
-        {{step.name}}
-    %div {{trace.statusMessage}}
+        %small {{step.type}} {{step.name}}
+      %li.right
+        %small {{trace.statusMessage}}
+        
+    
       
