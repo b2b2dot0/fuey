@@ -23,11 +23,11 @@ Fuey::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier # disable due to angular
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true # disable due to angular
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -77,4 +77,8 @@ Fuey::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Live streaming
+  config.preload_frameworks = true
+  config.allow_concurrency = true
 end
