@@ -1,9 +1,6 @@
 function TraceListCtrl($scope) {
     $scope.orderProp = 'name';
     $scope.traces = {};
-    $scope.search = function(value) {
-        console.log(value);
-    }
 
     // Wire up SSE
     var source = new EventSource('/traces');
