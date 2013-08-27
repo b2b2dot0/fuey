@@ -12,6 +12,9 @@
 
 <%= yield %>
 
-
+  <%= javascript_include_tag "foundation" %>
+  <script>
+    $(document).foundation();
+  </script>
 </body>
 </html>
