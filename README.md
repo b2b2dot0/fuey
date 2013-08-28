@@ -18,7 +18,52 @@ to the Fuey via [Redis](www.redis.io). The web Fuey web app then subscribes to t
 [Server Sent Events](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
 to push updates to connected browsers resulting in a constant feed of real time trace results!
 
-### What does it look like?
+### What does Fuey look like?
 It looks like awesome! The dashboard shows you the number of currently reporting `Traces`, allows you to filter those 
-`Traces` by status, name, and/or environment.
+`Traces` by status, name, and/or environment. Keep whichever filters you like applied and show Fuey on a monitor in 
+your workspace, it will update on it's own!
+
+### Requirements
+Ruby 2.0 (For Fuey Web App)
+Ruby 1.8.7, 1.9, or 2.0 (For FueyClient)
+Redis 2.6
+Rails 4
+Puma
+
+### Setup
+Install FueyClient on each server you would like to monitor.
+To setup the FeuyClient, refer to the [README](https://github.com/b2b2dot0/fuey_client/blob/master/README.md)
+
+Install and setup Redis. Configure the FueyClient's to use this Redis server.
+
+Install the Fuey Web App.
+Clone the Fuey repo where you'd like to have it reside on your webserver
+
+```
+git clone git@github.com:b2b2dot0/fuey.git
+```
+Make sure you have bundler installed
+```
+gem install bundler
+```
+Change directory into the Fuey app, and run
+```
+bundle install
+```
+Fire up the app with Puma
+```
+rails s puma
+```
+Once your Fuey Clients start reporting, you will see them appear in the Fuey web app dashboard. Enjoy!
+
+
+
+
+
+
+
+
+
+
+
 
