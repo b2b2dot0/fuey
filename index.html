@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Fuey by b2b2dot0</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Fuey</h1>
+        <h2>Troubleshoot your server connections with ease! Automate with Fuey.</h2>
+        <a href="https://github.com/b2b2dot0/fuey" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a name="why-we-built-fuey" class="anchor" href="#why-we-built-fuey"><span class="octicon octicon-link"></span></a>Why we built Fuey?</h3>
+
+<p><a href="www.b2b2dot0.com">We</a> believe in ensuring our customers instances are able to reach their required
+network resources. Because when required resources become unavailable, 
+we want to know first! We also want to know where a connection failed. 
+Did the VPN drop? Was their SAP instance down? Or did the internets blowup? 
+Whatever the answer is we want to know it and know it with little effort.</p>
+
+<h3>
+<a name="how-does-fuey-do-it" class="anchor" href="#how-does-fuey-do-it"><span class="octicon octicon-link"></span></a>How does Fuey do it?</h3>
+
+<p>We like, well love, <a href="https://www.ruby-lang.org">Ruby</a> at <a href="www.b2b2dot0.com">B2b2dot0</a> so we wrote a 
+<a href="https://rubygems.org/gems/fuey_client">Ruby gem</a> called <a href="https://github.com/b2b2dot0/fuey_client">FueyClient</a> 
+that resides on each server we want to keep an eye on. Because we believe in simplicity, configuring FueyClient 
+can be done with <a href="https://github.com/b2b2dot0/fuey_client/blob/master/config_example/fuey/config/fuey.yml">a simple YAML file</a>.
+Then just run the FueyClient every minute, 5 minutes, etc with Cron or your favorite scheduler. </p>
+
+<p>When the client runs it executes each <code>Trace</code> and  it's <code>Inspections</code>. As it does so it provides real time updates 
+to the Fuey via <a href="www.redis.io">Redis</a>. The web Fuey web app then subscribes to the Redis queue and uses 
+<a href="http://tenderlovemaking.com/2012/07/30/is-it-live.html">Rails Live Streaming</a> and 
+<a href="http://www.html5rocks.com/en/tutorials/eventsource/basics/">Server Sent Events</a>
+to push updates to connected browsers resulting in a constant feed of real time trace results!</p>
+
+<h3>
+<a name="what-does-fuey-look-like" class="anchor" href="#what-does-fuey-look-like"><span class="octicon octicon-link"></span></a>What does Fuey look like?</h3>
+
+<p>It looks like awesome! The dashboard shows you the number of currently reporting <code>Traces</code>, allows you to filter those 
+<code>Traces</code> by status, name, and/or environment. Keep whichever filters you like applied and show Fuey on a monitor in 
+your workspace, it will update on it's own!</p>
+
+<h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<p>Ruby 2.0 (For Fuey Web App)
+Ruby 1.8.7, 1.9, or 2.0 (For FueyClient)
+Redis 2.6
+Rails 4
+Puma</p>
+
+<h3>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
+
+<p>Install FueyClient on each server you would like to monitor.
+To setup the FeuyClient, refer to the <a href="https://github.com/b2b2dot0/fuey_client/blob/master/README.md">README</a></p>
+
+<p>Install and setup Redis. Configure the FueyClient's to use this Redis server.</p>
+
+<p>Install the Fuey Web App.
+Clone the Fuey repo where you'd like to have it reside on your webserver</p>
+
+<pre><code>git clone git@github.com:b2b2dot0/fuey.git
+</code></pre>
+
+<p>Make sure you have bundler installed</p>
+
+<pre><code>gem install bundler
+</code></pre>
+
+<p>Change directory into the Fuey app, and run</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<p>Fire up the app with Puma</p>
+
+<pre><code>rails s puma
+</code></pre>
+
+<p>Once your Fuey Clients start reporting, you will see them appear in the Fuey web app dashboard. Enjoy!</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/b2b2dot0/fuey/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/b2b2dot0/fuey/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/b2b2dot0/fuey"></a> is maintained by <a href="https://github.com/b2b2dot0">b2b2dot0</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
