@@ -36,7 +36,6 @@ function TraceListCtrl($scope, $filter) {
             $scope.traces[trace.name].status = trace.status;
             $scope.traces[trace.name].statusMessage = trace.statusMessage;
             $scope.traces[trace.name].steps[stepIndex(steps, trace.steps[0].name)] = trace.steps[0];
-            $scope.filteredData = $filter("traceFilter")($scope.traces, query);
         });
     }, false);
 }
