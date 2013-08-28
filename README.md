@@ -6,8 +6,8 @@ Did the VPN drop? Was their SAP instance down? Or did the internets blowup?
 Whatever the answer is we want to know it and know it with little effort.
 
 ### How does Fuey do it?
-We like, well love, Ruby at [B2b2dot0](www.b2b2dot0.com) so we wrote a 
-Ruby gem called [FueyClient](https://github.com/b2b2dot0/fuey_client) 
+We like, well love, [Ruby](https://www.ruby-lang.org) at [B2b2dot0](www.b2b2dot0.com) so we wrote a 
+[Ruby gem](https://rubygems.org/gems/fuey_client) called [FueyClient](https://github.com/b2b2dot0/fuey_client) 
 that resides on each server we want to keep an eye on. Because we believe in simplicity, configuring FueyClient 
 can be done with [a simple YAML file](https://github.com/b2b2dot0/fuey_client/blob/master/config_example/fuey/config/fuey.yml).
 Then just run the FueyClient every minute, 5 minutes, etc with Cron or your favorite scheduler. 
