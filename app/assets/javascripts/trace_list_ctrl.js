@@ -1,6 +1,25 @@
-function TraceListCtrl($scope) {
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
+function TraceListCtrl($scope, $filter) {
     $scope.orderProp = 'name';
     $scope.traces = {};
+    $scope.filteredData = [];
+    $scope.query  = {
+        text: "",
+        status: "",
+        environment: ""
+    };
+
+    // Update counts and filtered data
+    $scope.$watch("traces", function(traces){
+        $scope.totalTraces = Object.size(traces);
+    }, true);
 
     // Wire up SSE
     var source = new EventSource('/traces');
@@ -17,6 +36,7 @@ function TraceListCtrl($scope) {
             $scope.traces[trace.name].status = trace.status;
             $scope.traces[trace.name].statusMessage = trace.statusMessage;
             $scope.traces[trace.name].steps[stepIndex(steps, trace.steps[0].name)] = trace.steps[0];
+            $scope.filteredData = $filter("traceFilter")($scope.traces, query);
         });
     }, false);
 }
