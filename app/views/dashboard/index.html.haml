@@ -1,14 +1,14 @@
 :css
-  .pending, .pending a {
+  .pending {
     color: darkgrey
   }
-  .failed, .failed a {
+  .failed {
     color: red
   }
-  .passed, .passed a {
+  .passed {
     color: green
   }
-  .executed, .executed a {
+  .executed {
     color: orange
   }
   .upcase {
@@ -68,8 +68,5 @@
       %li{:class => '{{trace.status}}'}
         %strong {{trace.name}}
       %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.statusMessage}}'} 
-        %div.reveal-modal{:id => "{{trace.name}}-{{step.name.replace(' ','-')}}Modal"}
-          %a.close-reveal-modal Close 
-          %div.row {{step.statusMessage}}
         %small 
-          %a{"data-reveal-id" => "{{trace.name}}-{{step.name.replace(' ','-')}}Modal", :href => "#status-message"} {{step.type}} {{step.name}}        
+          {{step.type}} {{step.name}}        
