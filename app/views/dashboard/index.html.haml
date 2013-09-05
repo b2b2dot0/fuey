@@ -67,6 +67,6 @@
     %ul.breadcrumbs
       %li{:class => '{{trace.status}}'}
         %strong {{trace.name}}
-      %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.statusMessage}}'} 
+      %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.status_message}}'} 
         %small 
           {{step.type}} {{step.name}}        

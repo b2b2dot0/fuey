@@ -31,11 +31,13 @@ function TraceListCtrl($scope, $filter) {
     }, false);
     source.addEventListener('update', function(e) {
         $scope.$apply(function() {
-            var trace = JSON.parse(e.data);
-            var steps = $scope.traces[trace.name].steps;
-            $scope.traces[trace.name].status = trace.status;
-            $scope.traces[trace.name].statusMessage = trace.statusMessage;
-            $scope.traces[trace.name].steps[stepIndex(steps, trace.steps[0].name)] = trace.steps[0];
+            var update     = JSON.parse(e.data);
+            var trace_name = update[0];
+            var step       = update[1];
+            var steps      = $scope.traces[trace_name].steps;
+            $scope.traces[trace_name].status = step.status;
+            $scope.traces[trace_name].status_message = step.status_message;
+            $scope.traces[trace_name].steps[stepIndex(steps, step.name)] = step;
         });
     }, false);
 }
