@@ -11,3 +11,18 @@
  *= require_self
  *= require foundation
  */
+.pending, .breadcrumbs .pending {
+   color: darkgrey
+}
+.failed, .breadcrumbs .failed {
+   color: red
+}
+.passed, .breadcrumbs .passed {
+   color: green
+}
+.executed, .breadcrumbs .executed {
+   color: orange
+}
+.upcase {
+   text-transform: uppercase
+}

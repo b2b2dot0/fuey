@@ -28,6 +28,7 @@ Fuey::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true # disable due to angular
+  # config.assets.js_compressor = Uglifier.new(mangle: false)
 
   # Generate digests for assets URLs.
   config.assets.digest = true

@@ -13,6 +13,13 @@
 //= require indexOf
 //= require compare_str
 //= require trace_filter
-//= require trace_list_ctrl
+//= require fuey
+//= require services/trace
+//= require controllers/traces_ctrl
+//= require controllers/history_ctrl
 
-angular.module('fuey',['filters']);
+
+
+
+
+

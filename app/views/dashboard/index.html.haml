@@ -1,72 +1,56 @@
-:css
-  .pending {
-    color: darkgrey
-  }
-  .failed {
-    color: red
-  }
-  .passed {
-    color: green
-  }
-  .executed {
-    color: orange
-  }
-  .upcase {
-    text-transform: uppercase
-  }
-
-%nav.top-bar
-  %ul.title-area
-    %li.name 
-      %h1 
-        = link_to "FUEY CLIENT TRACES", dashboard_url
+%div{'ng-controller' => 'TracesCtrl'}
+  %nav.top-bar
+    %ul.title-area
+      %li.name 
+        %h1 
+          = link_to "FUEY CLIENT TRACES", root_url
+  
+    %div
+      %a{'data-reveal-id' => 'filterModal', :href => '#adjustFilters'} Filter Traces
+      %span.label.upcase.radius{"ng-show" => "query.status"} {{query.status}}
+      %span.label.upcase.radius{"ng-show" => "query.environment"} {{query.environment}}
+      %span.label.upcase.radius{"ng-show" => "query.text"} {{query.text}}
+    
+    %div.row
+      %div.large-12.columns
+        %div.right
+          %h5 {{totalTraces}} traces currently reporting 
+  
+  %div.reveal-modal#filterModal
+    %h2 Filter Fuey Traces
+    %a.close-reveal-modal Close 
+    %form.custom
+      %div.row.panel
+        %div.large-4.columns
+          %input{"ng-model" => "query.text", :placeholder => "enter text to filter"}
+        
+        %div.large-4.columns
+          %label{:for => 'state-toggle'}
+            %input{:type => "radio", "ng-model" => "query.status", :name => "state-toggle", :value => ""} 
+            All
+          %label{:for => 'state-toggle'}
+            %input{:type => "radio", "ng-model" => "query.status", :name => "state-toggle", :value => "passed"}
+            Passed
+          %label{:for => 'state-toggle'}
+            %input{:type => "radio", "ng-model" => "query.status", :name => "state-toggle", :value => "failed"}
+            Failed
+       
+        %div.large-4.columns
+          %label{:for => 'environment-toggle'}
+            %input{:type => "radio", "ng-model" => "query.environment", :name => "environment-toggle", :value => ""} 
+            All
+          %label{:for => 'environment-toggle'}
+            %input{:type => "radio", "ng-model" => "query.environment", :name => "environment-toggle", :value => "prod"}
+            Production
+          %label{:for => 'environment-toggle'}
+            %input{:type => "radio", "ng-model" => "query.environment", :name => "environment-toggle", :value => "qa"}
+            QA
 
   %div
-    %a{'data-reveal-id' => 'filterModal', :href => '#adjustFilters'} Filter Traces
-    %span.label.upcase.radius{"ng-show" => "query.status"} {{query.status}}
-    %span.label.upcase.radius{"ng-show" => "query.environment"} {{query.environment}}
-    %span.label.upcase.radius{"ng-show" => "query.text"} {{query.text}}
-  
-  %div.row
-    %div.large-12.columns
-      %div.right
-        %h5 {{totalTraces}} traces currently reporting 
-
-%div.reveal-modal#filterModal
-  %h2 Filter Fuey Traces
-  %a.close-reveal-modal Close 
-  %form.custom
-    %div.row.panel
-      %div.large-4.columns
-        %input{"ng-model" => "query.text", :placeholder => "enter text to filter"}
-      
-      %div.large-4.columns
-        %label{:for => 'state-toggle'}
-          %input{:type => "radio", "ng-model" => "query.status", :name => "state-toggle", :value => ""} 
-          All
-        %label{:for => 'state-toggle'}
-          %input{:type => "radio", "ng-model" => "query.status", :name => "state-toggle", :value => "passed"}
-          Passed
-        %label{:for => 'state-toggle'}
-          %input{:type => "radio", "ng-model" => "query.status", :name => "state-toggle", :value => "failed"}
-          Failed
-     
-      %div.large-4.columns
-        %label{:for => 'environment-toggle'}
-          %input{:type => "radio", "ng-model" => "query.environment", :name => "environment-toggle", :value => ""} 
-          All
-        %label{:for => 'environment-toggle'}
-          %input{:type => "radio", "ng-model" => "query.environment", :name => "environment-toggle", :value => "prod"}
-          Production
-        %label{:for => 'environment-toggle'}
-          %input{:type => "radio", "ng-model" => "query.environment", :name => "environment-toggle", :value => "qa"}
-          QA
-
-%div
-  %div{'ng-repeat' => 'trace in traces | traceFilter:query  | orderBy:orderProp'}
-    %ul.breadcrumbs
-      %li{:class => '{{trace.status}}'}
-        %strong {{trace.name}}
-      %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.status_message}}'} 
-        %small 
-          {{step.type}} {{step.name}}        
+    %div{'ng-repeat' => 'trace in traces | traceFilter:query  | orderBy:orderProp'}
+      %ul.breadcrumbs
+        %li
+          %strong 
+            %a{:href => "http://localhost:3000/traces/{{trace.name}}", :class => '{{trace.status}}'} {{trace.name}}            
+        %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.status_message}}'} 
+          %small {{step.type}} {{step.name}}

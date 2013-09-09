@@ -1,0 +1,22 @@
+%div{'ng-controller' => 'HistoryCtrl'}
+  %nav.top-bar
+    %ul.title-area
+      %li.name 
+        %h1 
+          = link_to "FUEY CLIENT TRACES", root_url
+    %ul
+      %li
+        %input{"ng-model" => "query", :placeholder => "type here to filter", :style => 'font-size: 12pt;'}
+
+  %div
+    %div{'ng-repeat' => 'trace in traces | filter:query | orderBy:time' }
+      %ul.breadcrumbs
+        %li
+          %strong {{trace.time}}
+        %li{'class' => '{{trace.status}}'}
+          %strong {{trace.name}}
+        %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.status_message}}'} 
+          %small {{ step.type }} {{ step.name }}
+        %li{'class' => '{{trace.status}}'} {{ trace.status_message }}
+            
+  

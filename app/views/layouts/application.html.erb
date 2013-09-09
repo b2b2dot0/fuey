@@ -3,14 +3,15 @@
 <head>
   <title>Fuey</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.js"></script>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "angular" %>
   <%= csrf_meta_tags %>
 </head>
-<body ng-controller='TraceListCtrl'>
+<body>
 
-<%= yield %>
+  <%= yield %>
 
   <%= javascript_include_tag "foundation" %>
   <script>

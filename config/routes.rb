@@ -1,6 +1,6 @@
 Fuey::Application.routes.draw do
-  get 'dashboard' => 'dashboard#index', :as => "dashboard"
   get 'traces' => 'traces#stream', :as => "stream_traces"
+  get 'traces/:trace_name' => 'traces#history', :as => "show_trace"
   root 'dashboard#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
