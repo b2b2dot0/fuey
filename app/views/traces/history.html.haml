@@ -19,4 +19,6 @@
           %small {{ step.type }} {{ step.name }}
         %li{'class' => '{{trace.status}}'} {{ trace.status_message }}
             
-  
+:javascript
+  // Would like to find the more "angular" way to do this.
+  window.traceName = "#{params[:trace_name]}"

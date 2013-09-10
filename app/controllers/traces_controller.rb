@@ -10,7 +10,7 @@ class TracesController < ApplicationController
       format.html
       format.json do
         redis = Redis.new
-        history = redis.lrange params[:trace_name], 0, -1
+        history = redis.lrange trace_name, 0, 5000 # About 3.5 days if cron scheduled every min
         history.map! do |result|
           trace = JSON.parse(result)
           trace["time"] = Time.parse(trace["time"]).strftime("%a %b %d %l:%M:%S %p")
@@ -21,6 +21,11 @@ class TracesController < ApplicationController
       end
     end
   end
+
+  def trace_name
+    params[:trace_name].downcase
+  end
+  protected :trace_name
 
   def stream
     # SSE expects the `text/event-stream` content type

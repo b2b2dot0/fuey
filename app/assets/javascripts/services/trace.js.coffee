@@ -1,2 +1,2 @@
 fuey.factory "Trace", @Trace = ($resource) ->
-  $resource '/traces/ios'
+  $resource '/traces/:traceName', traceName: '@traceName'
