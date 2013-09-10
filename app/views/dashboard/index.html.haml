@@ -1,3 +1,10 @@
+:css
+  div.jGrowl div.jGrowl-notification.warning {
+    color: #cd0a0a; 
+    background-color: #fef1ec;
+    border: 1px solid #cd0a0a;
+    opacity: 1;
+  }
 %div{'ng-controller' => 'TracesCtrl'}
   %nav.top-bar
     %ul.title-area
@@ -51,6 +58,6 @@
       %ul.breadcrumbs
         %li
           %strong 
-            %a{:href => "http://localhost:3000/traces/{{trace.name}}", :class => '{{trace.status}}'} {{trace.name}}            
+            %a{:href => "/traces/{{trace.name}}", :target => "_new", :class => '{{trace.status}}'} {{trace.name}}            
         %li{'ng-repeat' => 'step in trace.steps', 'class' => '{{step.status}}', :title => '{{step.status_message}}'} 
           %small {{step.type}} {{step.name}}

@@ -6,7 +6,16 @@ fuey.controller "TracesCtrl", @TracesCtrl = ($scope, $filter) ->
     text: ""
     status: ""
     environment: ""
-  
+
+  $scope.now = () ->
+    currentDate = new Date()
+    return currentDate.getHours() + ":" + 
+      currentDate.getMinutes() + " on " +
+      currentDate.getDate() + "/" +
+      (currentDate.getMonth()+1)  + "/" +
+      currentDate.getFullYear()
+
+
   # Update counts and filtered data
   $scope.$watch "traces", ((traces) ->
     $scope.totalTraces = Object.size(traces)
@@ -25,6 +34,8 @@ fuey.controller "TracesCtrl", @TracesCtrl = ($scope, $filter) ->
       update = JSON.parse(e.data)
       trace_name = update[0]
       step = update[1]
+      if step.status == 'failed'
+        $.jGrowl ("At " + $scope.now() + "<br />" + step.name + " " + step.status_message), header: trace_name, sticky: true, glue: "before", theme: "warning"
       steps = $scope.traces[trace_name].steps
       $scope.traces[trace_name].status = step.status
       $scope.traces[trace_name].status_message = step.status_message
