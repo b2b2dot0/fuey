@@ -24,11 +24,12 @@ It looks like awesome! The dashboard shows you the number of currently reporting
 your workspace, it will update on it's own!
 
 ### Requirements
-Ruby 2.0 (For Fuey Web App)
-Ruby 1.8.7, 1.9, or 2.0 (For FueyClient)
-Redis 2.6
-Rails 4
-Puma
+- FueyClient > 0.7
+- Ruby 2.0 (For Fuey Web App)
+- Ruby 1.8.7, 1.9, or 2.0 (For FueyClient)
+- Redis 2.6
+- Rails 4
+- Puma
 
 ### Setup
 Install FueyClient on each server you would like to monitor.
