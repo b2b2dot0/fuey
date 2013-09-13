@@ -1,12 +1,12 @@
 ### Why we built Fuey?
-[We](www.b2b2dot0.com) believe in ensuring our customers instances are able to reach their required
+[We](http://www.b2b2dot0.com) believe in ensuring our customers instances are able to reach their required
 network resources. Because when required resources become unavailable, 
 we want to know first! We also want to know where a connection failed. 
 Did the VPN drop? Was their SAP instance down? Or did the internets blowup? 
 Whatever the answer is we want to know it and know it with little effort.
 
 ### How does Fuey do it?
-We like, well love, [Ruby](https://www.ruby-lang.org) at [B2b2dot0](www.b2b2dot0.com) so we wrote a 
+We like, well love, [Ruby](https://www.ruby-lang.org) at [B2b2dot0](http://www.b2b2dot0.com) so we wrote a 
 [Ruby gem](https://rubygems.org/gems/fuey_client) called [FueyClient](https://github.com/b2b2dot0/fuey_client) 
 that resides on each server we want to keep an eye on. Because we believe in simplicity, configuring FueyClient 
 can be done with [a simple YAML file](https://github.com/b2b2dot0/fuey_client/blob/master/config_example/fuey/config/fuey.yml).
